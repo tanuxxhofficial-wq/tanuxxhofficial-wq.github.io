@@ -6,7 +6,7 @@
      crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SmartCalc Toolkit - Health & Finance Tools</title>
+<title>Calculator Pro - Health & Finance Tools</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
@@ -22,9 +22,12 @@
     .result { margin-top:20px; padding:20px; background:white; border-radius:16px; text-align:center; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
     .content-area { line-height: 1.7; color: #475569; }
     .content-area h3 { color: #1e293b; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem; font-size: 1.25rem; }
+    .content-area p { margin-bottom: 1rem; }
     .disclaimer { font-size: 0.85rem; padding: 1.25rem; background: #fff7ed; border-left: 4px solid #f97316; margin: 1.5rem 0; border-radius: 8px; color: #9a3412; }
     .chart-container { position: relative; height: 250px; width: 100%; margin-top: 20px; }
     footer a { color: #64748b; font-size: 0.9rem; margin: 0 10px; }
+    details summary { list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    details summary::-webkit-details-marker { display: none; }
 </style>
 </head>
 
@@ -54,9 +57,17 @@
       </nav>
 
       <h2 class="font-bold text-slate-400 uppercase tracking-widest text-[10px] mb-6">FINANCE & UTILITY</h2>
-      <nav class="space-y-2">
+      <nav class="space-y-2 mb-8">
         <div onclick="openPage('emi')" class="menu-item px-4 py-3 rounded-xl cursor-pointer font-medium text-slate-700">Loan EMI Calculator</div>
         <div onclick="openPage('age')" class="menu-item px-4 py-3 rounded-xl cursor-pointer font-medium text-slate-700">Age Calculator</div>
+      </nav>
+
+      <h2 class="font-bold text-slate-400 uppercase tracking-widest text-[10px] mb-6">RESOURCES</h2>
+      <nav class="space-y-2">
+        <div onclick="openPage('about')" class="menu-item px-4 py-3 rounded-xl cursor-pointer font-medium text-slate-700">About Us</div>
+        <div onclick="openPage('contact')" class="menu-item px-4 py-3 rounded-xl cursor-pointer font-medium text-slate-700">Contact Support</div>
+        <div onclick="openPage('legal')" class="menu-item px-4 py-3 rounded-xl cursor-pointer font-medium text-slate-700">Legal & Terms</div>
+        <div onclick="openPage('faq')" class="menu-item px-4 py-3 rounded-xl cursor-pointer font-medium text-slate-700">FAQ Section</div>
       </nav>
     </div>
   </aside>
@@ -66,7 +77,7 @@
     <section id="bmi" class="page glass rounded-3xl shadow-xl p-6 md:p-10">
       <div class="max-w-4xl">
           <h2 class="text-4xl font-extrabold text-slate-900 mb-2">BMI Calculator</h2>
-          <p class="text-slate-500 text-lg mb-8">Determine your body mass category and health status.</p>
+          <p class="text-slate-500 text-lg mb-8">Comprehensive weight analysis for adult health assessment.</p>
           
           <div class="grid lg:grid-cols-2 gap-12">
             <div class="bg-slate-50 p-6 rounded-2xl">
@@ -79,18 +90,21 @@
                 <div class="chart-container"><canvas id="bmiChart"></canvas></div>
             </div>
             <div class="content-area">
-                <h3>Understanding Your Results</h3>
-                <p>BMI is a standardized method used by healthcare providers to assess weight-related health risks. It categorizes individuals into Underweight, Healthy Weight, Overweight, and Obese based on the density of mass relative to height.</p>
-                <p>While useful, it is important to note that BMI does not distinguish between muscle and fat. Highly active individuals or athletes may receive an "Overweight" score due to high muscle density rather than high body fat.</p>
-                <h3>Health Implications</h3>
-                <ul class="list-disc ml-5 space-y-2 mt-2">
-                    <li><b>Underweight:</b> May indicate nutritional deficiencies or underlying health issues.</li>
-                    <li><b>Healthy Weight:</b> Lower risk of chronic diseases like Type 2 diabetes and heart disease.</li>
-                    <li><b>Overweight/Obese:</b> Associated with higher risks of hypertension and cardiovascular strain.</li>
-                </ul>
-                <div class="disclaimer">
-                    <strong>Note:</strong> Ethnicities, particularly Asian and South Asian populations, may face higher health risks at lower BMI levels than the standard international cut-offs.
+                <h3>Is BMI Still Relevant?</h3>
+                <p>The Body Mass Index (BMI) remains one of the most widely used screening tools for weight-related health risks. By analyzing the ratio of your weight to your height, medical professionals can estimate if you are at risk for conditions like hypertension or diabetes.</p>
+                
+                <div class="bg-blue-50 p-5 rounded-xl my-4">
+                    <h4 class="font-bold text-blue-800 mb-2 italic">Important: Ethnicity Matters</h4>
+                    <p class="text-sm text-slate-600">Standard WHO cut-offs are based on European data. Recent studies show that <strong>South Asian and East Asian populations</strong> have higher body fat percentages at lower BMIs, meaning metabolic risks start at a BMI of 23 instead of 25.</p>
                 </div>
+
+                <h3>Common Categories</h3>
+                <ul class="list-disc ml-5 space-y-2 text-sm">
+                    <li><strong>Underweight (< 18.5):</strong> Potential nutrient deficiencies or osteoporosis risk.</li>
+                    <li><strong>Normal (18.5 - 24.9):</strong> Statistically the lowest risk for heart disease.</li>
+                    <li><strong>Overweight (25.0 - 29.9):</strong> Increased strain on joints and the cardiovascular system.</li>
+                    <li><strong>Obese (30.0+):</strong> High correlation with metabolic syndrome and sleep apnea.</li>
+                </ul>
             </div>
           </div>
       </div>
@@ -111,18 +125,20 @@
           <div class="chart-container"><canvas id="emiChart"></canvas></div>
         </div>
         <div class="content-area">
-          <h3>Plan Your Finances</h3>
-          <p>An EMI (Equated Monthly Installment) allows you to pay back a large loan in manageable chunks over a set period. Each payment consists of both the principal amount and the interest charged by the bank.</p>
-          <h3>Interest vs. Principal</h3>
-          <p>In the early stages of your loan, a larger portion of your EMI goes toward paying the interest. As time progresses and the outstanding principal decreases, the interest component reduces, and more of your payment goes toward clearing the actual loan amount.</p>
+          <h3>The Mechanics of Your Loan</h3>
+          <p>An Equated Monthly Installment (EMI) consists of two parts: the <strong>Principal</strong> (the actual money borrowed) and the <strong>Interest</strong> (the bank's profit). In the beginning, most of your payment goes toward interest, while in the later years, more goes toward the principal.</p>
+          
+          <h3>Why Tenure Matters</h3>
+          <p>Choosing a longer tenure (e.g., 20 years instead of 10) will lower your monthly payment, but it will significantly increase the total amount of interest you pay over the life of the loan. This tool helps you find the "sweet spot" between monthly affordability and total debt cost.</p>
+          
           <div class="disclaimer">
-            <strong>Pro Tip:</strong> Making small prepayments towards your principal can significantly reduce the total interest paid and shorten your loan tenure.
+            <strong>Pro Tip:</strong> Using an EMI calculator before taking a loan helps you negotiate better rates with banks and prevents over-leveraging your finances.
           </div>
         </div>
       </div>
     </section>
 
-    <section id="ideal" class="page hidden glass rounded-3xl shadow-xl p-10">
+    <section id="ideal" class="page hidden glass rounded-3xl shadow-xl p-6 md:p-10">
         <h2 class="text-4xl font-extrabold text-slate-900 mb-6">Ideal Body Weight (IBW)</h2>
         <div class="grid lg:grid-cols-2 gap-12">
             <div class="bg-slate-50 p-6 rounded-2xl">
@@ -132,14 +148,14 @@
                 <div id="idealResult" class="result"></div>
             </div>
             <div class="content-area">
-                <h3>What is "Ideal"?</h3>
-                <p>Ideal Body Weight represents a weight range statistically associated with the lowest mortality rate and best health outcomes for your specific height.</p>
-                <p>Medical professionals use different standardized calculations to find this number. While these serve as excellent targets for weight loss or gain, they are general guidelines. Your frame size (small, medium, or large) and muscle mass will shift your personal ideal weight higher or lower.</p>
+                <h3>What Defines "Ideal"?</h3>
+                <p>The Ideal Body Weight (IBW) calculation isn't about "looks." It is a medical metric used to determine dosage for certain medications and to set healthy baseline targets for patients recovering from surgery or managing chronic illness.</p>
+                <p>We use the <strong>Devine Formula</strong>, which is the most widely accepted standard in clinical settings. However, it's important to remember that this doesn't account for bone density or muscle mass. A professional athlete will almost always weigh more than their "ideal" IBW due to dense muscle tissue.</p>
             </div>
         </div>
     </section>
 
-    <section id="bmr" class="page hidden glass rounded-3xl shadow-xl p-10">
+    <section id="bmr" class="page hidden glass rounded-3xl shadow-xl p-6 md:p-10">
         <h2 class="text-4xl font-extrabold text-slate-900 mb-6">Basal Metabolic Rate (BMR)</h2>
         <div class="grid lg:grid-cols-2 gap-12">
             <div class="bg-slate-50 p-6 rounded-2xl">
@@ -164,14 +180,19 @@
                 <div id="bmrResult" class="result"></div>
             </div>
             <div class="content-area">
-                <h3>The Science of Metabolism</h3>
-                <p>Your BMR is the energy required to keep your body functioning while at rest. Even when sleeping, your body burns energy to pump blood, breathe, and regulate hormones.</p>
-                <p>BMR accounts for approximately 60-75% of the total calories you burn in a day. Generally, the more muscle mass you have, the higher your BMR will be, as muscle tissue requires more energy to maintain than fat tissue.</p>
+                <h3>Your Body's Engine</h3>
+                <p>Think of BMR as the "idle speed" of a car. It is the number of calories your body burns just to stay alive—breathing, circulating blood, and maintaining internal organs—without any additional movement.</p>
+                <p><strong>Factors Affecting BMR:</strong></p>
+                <ul class="list-disc ml-5 space-y-2 text-sm">
+                    <li><strong>Age:</strong> BMR usually decreases as you age.</li>
+                    <li><strong>Muscle Mass:</strong> Muscle burns more calories at rest than fat.</li>
+                    <li><strong>Hormones:</strong> Thyroid issues can significantly speed up or slow down your rate.</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <section id="tdee" class="page hidden glass rounded-3xl shadow-xl p-10">
+    <section id="tdee" class="page hidden glass rounded-3xl shadow-xl p-6 md:p-10">
         <h2 class="text-4xl font-extrabold text-slate-900 mb-6">TDEE (Daily Calorie Burn)</h2>
         <div class="grid lg:grid-cols-2 gap-12">
             <div class="bg-slate-50 p-6 rounded-2xl">
@@ -190,14 +211,19 @@
                 <div class="chart-container"><canvas id="tdeeChart"></canvas></div>
             </div>
             <div class="content-area">
-                <h3>Total Daily Energy Expenditure</h3>
-                <p>TDEE is the most important number for weight management. It combines your BMR with your daily physical activity. To lose weight, you must consume fewer calories than your TDEE; to gain weight, you must consume more.</p>
-                <p>This estimation includes the "Thermic Effect of Food" (calories burned digesting) and "Non-Exercise Activity Thermogenesis" (calories burned walking, fidgeting, and moving throughout the day).</p>
+                <h3>The Key to Weight Control</h3>
+                <p>Your Total Daily Energy Expenditure (TDEE) is the actual number of calories you burn daily including your movement. This is the most accurate number to use when planning a diet.</p>
+                <p><strong>How to use this number:</strong></p>
+                <ul class="list-disc ml-5 space-y-2 text-sm">
+                    <li><strong>To Lose Weight:</strong> Consume 300-500 calories <em>less</em> than your TDEE.</li>
+                    <li><strong>To Gain Weight:</strong> Consume 300-500 calories <em>more</em> than your TDEE.</li>
+                    <li><strong>To Maintain:</strong> Eat exactly your TDEE amount.</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <section id="age" class="page hidden glass rounded-3xl shadow-xl p-10">
+    <section id="age" class="page hidden glass rounded-3xl shadow-xl p-6 md:p-10">
         <h2 class="text-4xl font-extrabold text-slate-900 mb-6">Age Calculator</h2>
         <div class="grid lg:grid-cols-2 gap-12">
             <div class="bg-slate-50 p-6 rounded-2xl text-center">
@@ -207,15 +233,91 @@
                 <div id="ageResult" class="result"></div>
             </div>
             <div class="content-area">
-                <h3>Time Tracking</h3>
-                <p>This tool calculates the exact time elapsed from your birth date to the present day. It accounts for leap years and varying month lengths to give you a precise reading.</p>
-                <p>Useful for calculating eligibility for government programs, legal documentation requirements, or simply knowing exactly how many years, months, and days you've been on this planet.</p>
+                <h3>Beyond Birthdays</h3>
+                <p>Age calculation often becomes tricky when dealing with leap years and the varying lengths of months. Our tool provides a precise readout of your age in years, ensuring accuracy for documentation or personal milestones.</p>
+                <p>Understanding your exact age can be helpful for financial planning, insurance quotes, and determining eligibility for specific age-restricted benefits or medical screenings.</p>
             </div>
         </div>
     </section>
 
-    <section id="about" class="page hidden glass rounded-3xl p-10"><h2 class="text-3xl font-bold">About Us</h2><p class="mt-4">Calculator Pro is a suite of precision tools designed to help you make informed decisions about your health and wealth.</p></section>
-    <section id="privacy" class="page hidden glass rounded-3xl p-10"><h2 class="text-3xl font-bold">Privacy</h2><p class="mt-4">We do not store your personal data. All logic runs locally on your device.</p></section>
+    <section id="faq" class="page hidden glass rounded-3xl shadow-xl p-10">
+        <h2 class="text-3xl font-extrabold text-slate-900 mb-8">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+            <details class="group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm transition-all duration-300">
+                <summary class="font-bold text-slate-800 cursor-pointer">How accurate are these calculators?
+                    <span class="text-sky-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <p class="mt-4 text-slate-600 text-sm leading-relaxed">Our calculators use the most peer-reviewed and clinically accepted formulas available (e.g., Mifflin-St Jeor for BMR and Devine for IBW). However, these are estimations. Biological factors like genetics, hormones, and body composition can create variations.</p>
+            </details>
+            <details class="group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm transition-all duration-300">
+                <summary class="font-bold text-slate-800 cursor-pointer">Are these tools free to use for commercial purposes?
+                    <span class="text-sky-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <p class="mt-4 text-slate-600 text-sm leading-relaxed">Yes, all tools on Calculator Pro are free to use. However, we do not allow our tools to be embedded into other sites without permission, and they should not be used as the sole basis for professional medical or financial advice.</p>
+            </details>
+            <details class="group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm transition-all duration-300">
+                <summary class="font-bold text-slate-800 cursor-pointer">What happens to the data I enter here?
+                    <span class="text-sky-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <p class="mt-4 text-slate-600 text-sm leading-relaxed">Absolutely nothing. All calculation logic runs locally in your web browser (client-side). We do not have a database that stores your personal metrics like weight, age, or loan amounts.</p>
+            </details>
+        </div>
+    </section>
+
+    <section id="legal" class="page hidden glass rounded-3xl shadow-xl p-10">
+        <h2 class="text-3xl font-extrabold text-slate-900 mb-6">Legal & Privacy Policy</h2>
+        <div class="content-area text-slate-600 space-y-6">
+            <div>
+                <h4 class="font-bold text-slate-800 text-lg mb-2 underline decoration-sky-300">Detailed Privacy Policy</h4>
+                <p>We respect your privacy. Here is exactly how we handle data:</p>
+                <ul class="list-disc ml-5 space-y-2 text-sm">
+                    <li><strong>No Server-Side Storage:</strong> Your personal measurements (weight, height, age) and financial data (loan amounts) never leave your device. Calculations are processed by your computer's browser.</li>
+                    <li><strong>Third-Party Scripts:</strong> We use Google AdSense and Google Analytics. These services may collect non-personally identifiable information (IP addresses, browser types) and use cookies to serve relevant ads and improve site performance.</li>
+                    <li><strong>Cookies:</strong> We do not set first-party cookies for tracking, though third-party vendors may use them as described in their own privacy policies.</li>
+                </ul>
+            </div>
+            <hr class="border-slate-100">
+            <div>
+                <h4 class="font-bold text-slate-800 text-lg mb-2">Terms of Service</h4>
+                <p class="text-sm">By using Calculator Pro, you agree that the results are provided "as-is" without any warranties. The owner of this site is not liable for any financial losses or health issues arising from the use of these tools. <strong>Always consult with a professional certified in the respective field before making significant lifestyle or financial changes.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="page hidden glass rounded-3xl shadow-xl p-10">
+        <div class="max-w-3xl">
+            <h2 class="text-4xl font-extrabold text-slate-900 mb-6">About Calculator Pro</h2>
+            <p class="text-lg text-slate-600 mb-6">Our mission is to simplify complex calculations and provide data-driven insights for everyone. We believe that professional-grade health and finance tools shouldn't be hidden behind paywalls or complex software.</p>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 bg-white border border-slate-100 rounded-xl">
+                    <span class="text-2xl">⚡</span>
+                    <h5 class="font-bold mt-2">Zero Latency</h5>
+                    <p class="text-xs text-slate-500">Calculations happen instantly in your browser.</p>
+                </div>
+                <div class="p-4 bg-white border border-slate-100 rounded-xl">
+                    <span class="text-2xl">🔒</span>
+                    <h5 class="font-bold mt-2">Private By Design</h5>
+                    <p class="text-xs text-slate-500">We don't want your data, and we don't save it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="page hidden glass rounded-3xl shadow-xl p-10">
+        <div class="grid lg:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-3xl font-extrabold text-slate-900 mb-4">Get In Touch</h2>
+                <p class="text-slate-600">Feedback? Bug reports? Suggestions for new tools? Send us a message.</p>
+                <p class="mt-6 font-bold text-slate-800">support@calculatorpro.xyz</p>
+            </div>
+            <div class="bg-slate-50 p-8 rounded-3xl">
+                <input type="text" placeholder="Your Name" class="input">
+                <input type="email" placeholder="Your Email" class="input">
+                <textarea placeholder="Your Message" class="input h-32"></textarea>
+                <button class="btn">Send Message</button>
+            </div>
+        </div>
+    </section>
 
   </main>
 </div>
@@ -223,9 +325,10 @@
 <footer class="bg-white border-t border-slate-200 p-8 text-center mt-auto">
     <div class="mb-4">
         <a href="javascript:void(0)" onclick="openPage('about')">About Us</a>
-        <a href="javascript:void(0)" onclick="openPage('privacy')">Privacy Policy</a>
+        <a href="javascript:void(0)" onclick="openPage('legal')">Privacy & Legal</a>
+        <a href="javascript:void(0)" onclick="openPage('contact')">Contact</a>
     </div>
-    <p class="text-slate-400 text-sm">&copy; 2026 Calculator Pro. All rights reserved.</p>
+    <p class="text-slate-400 text-sm">&copy; 2026 Calculator Pro. Empowering you with data.</p>
 </footer>
 
 <script>
@@ -240,7 +343,9 @@ function openPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
   document.getElementById(id).classList.remove('hidden');
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (window.innerWidth < 768) toggleSidebar();
+  if (window.innerWidth < 768 && !document.getElementById('sidebar').classList.contains('-translate-x-full')) {
+      toggleSidebar();
+  }
 }
 
 function updateChart(id, type, labels, data, colors) {
